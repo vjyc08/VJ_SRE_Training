@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Your Cart</title>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    {% if cart_items %}
+    <ul>
+        {% for item in cart_items %}
+        <li>{{ item.name }} - ${{ "%.2f"|format(item.price) }} × {{ item.quantity }} = ${{ "%.2f"|format(item.subtotal) }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Total: ${{ "%.2f"|format(total) }}</h3>
+    <a href="{{ url_for('checkout') }}">Checkout</a>
+    {% else %}
+    <p>Your cart is empty.</p>
+    {% endif %}
+    <br />
+    <a href="{{ url_for('index') }}">Continue Shopping</a>
+</body>
+</html>
